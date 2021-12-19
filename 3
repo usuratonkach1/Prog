@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <unordered_map>
+#define _CRT_SECURE_NO_WARNINGS
+#pragma warning(disable:4996)
+
+using namespace std;
+
+unordered_map<string, int> calc()
+{
+    unordered_map<string, int> slova ;
+    const char* abc = 0;
+    string x;
+    getline(cin, x);
+    char* abcd = &x[0];
+    char* abcde = strtok(abcd, " ");
+
+    while (abcde != NULL)
+    {
+        slova[string(abcde)]++;
+        abcd = strtok(NULL, " ");
+    }
+    return slova;
+}
+
+int main()
+{
+    while (true)
+    {
+        unordered_map<string, int> slova = calc();
+
+        int max = -1;
+        string maxS = "";
+        for ( auto& kol : slova)
+        {
+            if (kol.second > max) {
+                max = kol.second;
+                maxS = kol.first;
+            }
+        }
+
+        cout << maxS << endl;
+    }
+}
